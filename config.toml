@@ -1,4 +1,4 @@
 baseURL = "https://dev.5hdagency.com/"
 languageCode = "en-us"
 title = "5HD Hugo"
-theme = "ananke"
+theme = "fivehd"
