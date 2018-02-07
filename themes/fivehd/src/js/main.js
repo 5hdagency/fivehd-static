@@ -1,4 +1,4 @@
-import styles from './../css/main.css';
+import styles from './../css/main.scss';
 
 
 // NOTE: TO use Jquery, just call the modules you want

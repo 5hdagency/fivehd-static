@@ -37,6 +37,7 @@
       {{ block "main" . }}{{ end }}
     </main>
     {{ block "footer" . }}{{ partial "site-footer.html" . }}{{ end }}
+    <script src='{{ "dist/app.bundle.js" | absURL }}'></script> 
     {{ block "scripts" . }}{{ partial "site-footer-scripts.html" . }}{{ end }}
   </body>
 </html>

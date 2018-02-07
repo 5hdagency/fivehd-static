@@ -1,50 +1,61 @@
-var path = require("path");
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var webpack = require("webpack");
+const path = require("path");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const webpack = require("webpack");
+
+const extractSass = new ExtractTextPlugin({
+    filename: "[name].[contenthash].css",
+    disable: process.env.NODE_ENV != "production"
+});
+
 module.exports = {
-	entry: {
-		app: './js/main.js'
-	},
-	module: {
-		rules: [
-			{
-      test: /\.js$/,
-      exclude: /node_modules/,
-      use: {
-        loader: 'babel-loader',
-        options: {
-          presets: ['env']
-          // plugins: [require('babel-plugin-transform-object-rest-spread')]
+  entry: {
+    app: './js/main.js'
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['env']
+            // plugins: [require('babel-plugin-transform-object-rest-spread')]
+          }
         }
+      },
+      {
+        test: /\.scss$/,
+        use: extractSass.extract({
+            use: [{
+                loader: "css-loader"
+            }, {
+                loader: "sass-loader"
+            }],
+            // use style-loader in development
+            fallback: "style-loader"
+        })
       }
-    },
-			{
-				test: /\.css$/,
-				use: ExtractTextPlugin.extract({
-					fallback: "style-loader",
-					use: 'css-loader?importLoaders=1!postcss-loader'
-				})
-			}
-		]
-	},
+    ]
+  },
 
-	output: {
+  output: {
     path: path.join(__dirname, "./../static/dist"),
-		filename: '[name].bundle.js',
+    filename: '[name].bundle.js',
+  },
+
+  resolve: {
+    modules: [path.resolve(__dirname, 'src'), 'node_modules'],
 	},
 
-	resolve: {
-		modules: [path.resolve(__dirname, 'src'), 'node_modules'],
-	},
-
-	plugins: [
-		new ExtractTextPlugin("main.css"),
-		new webpack.ProvidePlugin({
+  plugins: [
+    extractSass,
+    new webpack.ProvidePlugin({
             $: "jquery",
             jQuery: "jquery"
         })
-	],
-	watchOptions: {
-		watch: true
-	}
+  ],
+  watchOptions: {
+    watch: true
+  }
 };
