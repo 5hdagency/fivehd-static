@@ -1,0 +1,4 @@
+User-agent: *
+{{ if ne (getenv "HUGO_ENV") "production" | and (ne .Site.Params.env "production")  }}
+  Disallow: /
+{{ end }}

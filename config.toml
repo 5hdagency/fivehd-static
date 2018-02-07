@@ -2,3 +2,7 @@ baseURL = "https://dev.5hdagency.com/"
 languageCode = "en-us"
 title = "5HD Hugo"
 theme = "fivehd"
+
+[params]
+featured_image = "/images/pexels-photo-64113.jpeg"
+enableRobotsTXT = true
