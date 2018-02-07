@@ -7,13 +7,16 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <link href='{{ "dist/app.min.css" | absURL }}' rel='stylesheet' type="text/css" />
+
     {{/*
       NOTE: For Production make sure you add `HUGO_ENV="production"` before your build command
     */}}
-    {{ if eq (getenv "HUGO_ENV") "production" | or (eq .Site.Params.env "production")  }}<meta name="ROBOTS" content="INDEX, FOLLOW">
-    {{ else }}<meta name="ROBOTS" content="NOINDEX, NOFOLLOW">{{ end }}
-
-    <link href='{{ "dist/main.css" | absURL }}' rel='stylesheet' type="text/css" />
+    {{ if eq (getenv "HUGO_ENV") "production" | or (eq .Site.Params.env "production")  }}
+    <meta name="ROBOTS" content="INDEX, FOLLOW">
+    {{ else }}
+    <meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
+    {{ end }}
 
     <meta property="og:title" content="{{ .Site.Title }} {{ with .Params.Title }} | {{ . }}{{ end }}" />
     <meta property="og:type" content="website" />
@@ -37,7 +40,7 @@
       {{ block "main" . }}{{ end }}
     </main>
     {{ block "footer" . }}{{ partial "site-footer.html" . }}{{ end }}
-    <script src='{{ "dist/app.bundle.js" | absURL }}'></script> 
+    <script src='{{ "dist/app.bundle.js" | absURL }}'></script>
     {{ block "scripts" . }}{{ partial "site-footer-scripts.html" . }}{{ end }}
   </body>
 </html>

@@ -3,8 +3,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const webpack = require("webpack");
 
 const extractSass = new ExtractTextPlugin({
-    filename: "[name].[contenthash].css",
-    disable: process.env.NODE_ENV != "production"
+    filename: "app.min.css",
 });
 
 module.exports = {
@@ -28,9 +27,11 @@ module.exports = {
         test: /\.scss$/,
         use: extractSass.extract({
             use: [{
-                loader: "css-loader"
+                loader: "css-loader",
+                options: { minimize: true, sourceMap: true }
             }, {
-                loader: "sass-loader"
+                loader: "sass-loader",
+                options: { minimize: true, sourceMap: true }
             }],
             // use style-loader in development
             fallback: "style-loader"
