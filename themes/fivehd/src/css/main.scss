@@ -1,2 +1,15 @@
-@import '_reset';
+@import 'reset';
+@import '_variables';
 @import '_global';
+
+header{
+  width:100%;
+  max-width: $content_max_width;
+  margin:auto;
+
+  @import '_header';
+}
+
+header.cover{
+  height: 200px;
+}

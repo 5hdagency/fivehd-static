@@ -1,0 +1,26 @@
+.logo{
+  width: 100%;
+  max-width: 300px;
+  margin:auto;
+}
+
+nav{
+  margin:auto;
+  width: 100% ;
+  @import '_nav';
+}
+
+@media (min-width:$desktop_min_size){
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+
+  .logo{
+    grid-column: 1 / 2;
+  }
+
+  nav{
+      grid-column: 3 / 7;
+  }
+}
