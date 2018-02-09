@@ -13,3 +13,7 @@ header{
 header.cover{
   height: 200px;
 }
+
+main{
+  @import '_article';
+}

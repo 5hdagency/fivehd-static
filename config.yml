@@ -6,9 +6,3 @@ enableRobotsTXT: true
 
 params:
   featured_image: "/images/pexels-photo-64113.jpeg"
-
-menu:
-  main:
-    - Name: "Useful Stuff"
-      Weight: 25
-      URL: "/"

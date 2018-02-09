@@ -3,8 +3,6 @@ a{
   text-decoration: none;
   font-weight: bold;
   text-transform: uppercase;
-
-
 }
 .active a{
   color: $fivehd_red;
@@ -12,12 +10,44 @@ a{
 
 ul{
   display: block;
+
   li{
-    float: left;
+    display: inline-block;
+
     a{
       display: block;
-      padding: 10px 20px;
+      padding: 10px;
 
+    }
+  }
+  
+  @media (max-width:640px){
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 80%;
+    margin: auto;
+
+    li{
+      flex: 1;
+      width: 150px;
+      padding: 10px;
+
+      a{
+        border: solid 1px $fivehd_red;
+      }
+    }
+  }
+
+  @media (max-width:$mobile_small_width){
+    li{
+      width: 120px;
+    }
+  }
+
+  @media (min-width:$content_max_width){
+    a{
+      padding: 20px;
     }
   }
 }
